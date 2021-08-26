@@ -1,0 +1,13 @@
+.input-field {
+  margin: 50px;
+  width: 300px;
+  height: 30px;
+}
+body {
+  background-color: rgb(226, 205, 205);
+}
+
+.county-item {
+  display: flex;
+  justify-content: space-around;
+}
