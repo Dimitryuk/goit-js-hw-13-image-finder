@@ -1,23 +1,27 @@
 {{#each this}}
-<li class="county-item">
-<h1 class="country-name">{{name}}</h1>
-<div class="country-info">
-    <p> Capital:{{capital}}</p>
-    <p>Population:{{population}}</p>
-    <ul>
-        <p>Languages:</p>
-        {{#each languages}}
-        <li>{{this.name}}</li>
-        {{/each}}
-    </ul>
-</div>
-<div class="flag-wrapper">
-    <img src="{{flag}}" alt="flag" class="img-flag" width="400" height="auto">
-</div>
 
-</li>
+<div class="photo-card">
+    <img src="{{webformatURL}}" alt="{{tags}}" width="400" />
 
+    <div class="stats">
+        <p class="stats-item">
+            <i class="material-icons">thumb_up</i> {{likes}}
+            
+        </p>
+        <p class="stats-item">
+            <i class="material-icons">visibility</i>{{views}}
+            
+        </p>
+        <p class="stats-item">
+            <i class="material-icons">comment</i>{{comments}}
+           
+        </p>
+        <p class="stats-item">
+            <i class="material-icons">cloud_download</i>{{downloads}}
+            
+        </p>
+    </div>
+</div>
 {{/each}}
-
 
 

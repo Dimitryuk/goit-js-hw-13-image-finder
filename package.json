@@ -3,10 +3,10 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://github.com/dimitryuk/goit-js-hw-12-countries.git",
+  "homepage": "https://github.com/dimitryuk/goit-js-hw-13-image-finder.git",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-12-countries/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-13-image-finder/"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "debounce": "^1.2.1",
-    "lodash": "^4.17.21",
     "pnotify": "^5.2.0"
   }
 }

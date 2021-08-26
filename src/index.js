@@ -1,64 +1,42 @@
-import fetchCountries from "./fetchCountries";
-import refs from "./refs";
-import template from './templates/template.hbs'
-import { debounce } from "debounce";
-import { alert, info, success, error } from '../node_modules/@pnotify/core/dist/PNotify.js';
+import picsTemplate from './templates/template.hbs'
+import picsFinder from './apiService'
+// import { objectTypeAnnotation } from 'babel-types'
+import axios from "axios"
+
+const apiKey = '23096925-d42719920a727f8342c46883c'
+const mainApi = 'https://pixabay.com/api/'
+let page = 1
 
 
-import "@pnotify/core/dist/PNotify.css" 
-import "@pnotify/desktop/dist/PNotifyDesktop" ;
-import '@pnotify/core/dist/BrightTheme.css';
-
- 
-// const myError = error({
-//   text: "I'm an error message."
-// });
+const refs = {
+  input: document.querySelector('.input'),
+  searchBtn: document.querySelector('.search-form__btn'),
+  picsList: document.querySelector('.gallery'),
+  form: document.querySelector('.search-form')
+}
 
 
 
-refs.input.addEventListener('input', debounce(onInputChange, 500))
+function onInput(event) {
+  event.preventDefault()
+  const formInputValue = refs.input.value
+  console.log(formInputValue);
 
-function onInputChange() {
-    refs.countriesList.innerHTML = "";
-    const inputValue = refs.input.value
-    if (inputValue) {
-        fetchCountries(inputValue.trim()).then((data) => createMarkup(data))
-        .catch((error)=> console.log('error'))
-    }
+  picsFinder(formInputValue, mainApi, page, apiKey)
+  .then(markupRender)
+  
+  
 
 }
-function createMarkup(data) {
-    const markup = template(data)
-    if (data.status===404) {
-        error({
-      text: `No country has been found. Please enter a more specific query!`,
-      styling: "brighttheme",
-      delay: 1500,
-    });
-    return;
-        
-    }
-    if (data && data.length >= 5) {
-    error({
-      title: `Too many matches found.`,
-      text: `We found ${data.length} countries. Please enter a more specific query!`,
-      styling: "brighttheme",
-      delay: 1500,
-    });
-    return (refs.countriesList.innerHTML = `<li>${country.name}</li>`);
-  }
-  if (data.length <= 10) {
-    refs.country-item.insertAdjacentHTML("beforeend", markup);
-  }
-  if (data.length > 10) {
-    error({
-      text: `Please enter a more specific query !`,
-      styling: "brighttheme",
-      delay: 1500,
-    });
-  }
-  if (data.length === 1) {
-    refs.countriesList.innerHTML = "";
-    refs.countriesList.insertAdjacentHTML("beforeend", markup);
-  }
+
+function markupRender(array) {
+  const markup = picsTemplate(array.map(item => item))
+  refs.picsList.insertAdjacentHTML('beforeend', markup)
+  
 }
+
+refs.form.addEventListener('submit', onInput)
+
+
+console.log(refs.input.value);
+
