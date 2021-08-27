@@ -8,7 +8,7 @@ let page = 1
 
 const refs = {
   input: document.querySelector('.input'),
-  searchBtn: document.querySelector('.search-form__btn'),
+  searchBtn: document.querySelector('.search__btn'),
   picsList: document.querySelector('.gallery'),
   form: document.querySelector('.search-form'),
   loadMore: document.querySelector('.load-more'),
@@ -25,7 +25,8 @@ function onInput(event) {
   picsFinder(formInputValue, mainApi, page, apiKey)
     .then(markupRender)
     .then(page++)
-  .catch(err)
+    .catch(err)
+ 
 }
 
 function markupRender(array) {
@@ -33,12 +34,20 @@ function markupRender(array) {
   refs.picsList.insertAdjacentHTML('beforeend', markup)
   
 }
-function reset() {
+// function showBtn() {
+//   if (refs.picsList.contains("photo-card")) {
+//     refs.loadMore.classList.remove('is-hidden')
+//   }
+// }
 
+
+
+function err(res) {
   refs.picsList.innerHTML= ' '
 }
 
-
 refs.form.addEventListener('submit', onInput)
 refs.loadMore.addEventListener('click', onInput)
-refs.reset.addEventListener('click', reset)
+refs.reset.addEventListener('click', err)
+refs.searchBtn.addEventListener('click', onInput)
+
