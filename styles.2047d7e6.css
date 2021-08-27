@@ -1,2 +1,0 @@
-.gallery{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;grid-auto-rows:minmax(150px,auto);grid-column-gap:20px;grid-row-gap:20px;list-style:none;margin-bottom:20px}.stats{display:flex;justify-content:space-around}.photo-card{align-items:center;text-align:center}
-/*# sourceMappingURL=/goit-js-hw-13-image-finder/styles.2047d7e6.css.map */
