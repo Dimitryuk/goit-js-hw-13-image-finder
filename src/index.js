@@ -21,7 +21,7 @@ function onInput(event) {
   event.preventDefault()
   const formInputValue = refs.input.value
   console.log(formInputValue);
-
+showBtn()
   picsFinder(formInputValue, mainApi, page, apiKey)
     .then(markupRender)
     .then(page++)
@@ -34,18 +34,22 @@ function markupRender(array) {
   refs.picsList.insertAdjacentHTML('beforeend', markup)
   
 }
-// function showBtn() {
-//   if (refs.picsList.contains("photo-card")) {
-//     refs.loadMore.classList.remove('is-hidden')
-//   }
-// }
-
-
-
 function err(res) {
-  refs.picsList.innerHTML= ' '
+  refs.picsList.innerHTML = ' '
+  refs.loadMore.classList.add('is-hidden')
+  
 }
 
+function showBtn() {
+  if (refs.picsList.length!==0) {
+    refs.loadMore.classList.remove('is-hidden')
+  }
+}
+
+
+
+
+// refs.reset.addEventListener('click', showBtn)
 refs.form.addEventListener('submit', onInput)
 refs.loadMore.addEventListener('click', onInput)
 refs.reset.addEventListener('click', err)
