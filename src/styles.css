@@ -44,3 +44,18 @@
 .is-hidden {
   display: none;
 }
+
+body {
+  background-color: beige;
+}
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.search__btn {
+  margin-left: 10px;
+}
+.reset__btn {
+  margin-left: 10px;
+}

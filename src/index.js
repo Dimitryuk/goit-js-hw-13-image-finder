@@ -1,5 +1,7 @@
 import picsTemplate from './templates/template.hbs'
 import picsFinder from './apiService'
+import * as basicLightbox from 'basiclightbox';
+import "basiclightbox/dist/basicLightbox.min.css"
 
 const apiKey = '23096925-d42719920a727f8342c46883c'
 const mainApi = 'https://pixabay.com/api/'
@@ -47,11 +49,17 @@ function showBtn() {
 }
 
 
+function onClickModalForBigImage(e) {
+  const fullImageSrc = e.target.dataset.source;
+  const instance = basicLightbox.create(`<img src="${fullImageSrc}">`);
+
+  instance.show();
+}
 
 
-// refs.reset.addEventListener('click', showBtn)
 refs.form.addEventListener('submit', onInput)
 refs.loadMore.addEventListener('click', onInput)
 refs.reset.addEventListener('click', err)
 refs.searchBtn.addEventListener('click', onInput)
+refs.picsList.addEventListener('click', onClickModalForBigImage)
 
