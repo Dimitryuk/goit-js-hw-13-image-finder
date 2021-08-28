@@ -45,8 +45,13 @@
   display: none;
 }
 
+h1 {
+  text-align: center;
+}
 body {
-  background-color: beige;
+  /* background-color: beige; */
+  background-image: url(https://klike.net/uploads/posts/2020-09/1599896332_2.jpg);
+  background-size: cover;
 }
 .search-form {
   display: flex;
@@ -58,4 +63,8 @@ body {
 }
 .reset__btn {
   margin-left: 10px;
+}
+
+button {
+  cursor: pointer;
 }
