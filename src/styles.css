@@ -68,3 +68,7 @@ body {
 button {
   cursor: pointer;
 }
+
+.input {
+  width: 300px;
+}
