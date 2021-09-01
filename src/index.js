@@ -31,7 +31,6 @@ function onInput(event) {
       delay: 2000,
     });
   } else {
-    showBtn();
     console.log(refs.picsList);
 
     picsFinder(formInputValue, mainApi, page, apiKey)
@@ -46,6 +45,7 @@ function markupRender(array) {
   if (array.length > 1) {
     const markup = picsTemplate(array);
     refs.picsList.insertAdjacentHTML('beforeend', markup);
+    showBtn();
   }
 
   if (array.length === 0) {
@@ -73,13 +73,6 @@ function onClickModalForBigImage(e) {
 
   instance.show();
 }
-
-// const element = document.getElementById('.my-element-selector');
-// element.scrollIntoView({
-//   behavior: 'smooth',
-//   block: 'end',
-// });
-
 function scroll() {
   refs.body.scrollIntoView({
     behavior: 'smooth',
@@ -93,4 +86,3 @@ refs.loadMore.addEventListener('click', onInput);
 refs.reset.addEventListener('click', err);
 refs.searchBtn.addEventListener('click', onInput);
 refs.picsList.addEventListener('click', onClickModalForBigImage);
-// refs.searchBtn.addEventListener('click', scroll);
