@@ -17,7 +17,10 @@ const refs = {
   form: document.querySelector('.search-form'),
   loadMore: document.querySelector('.load-more'),
   reset: document.querySelector('.reset__btn'),
+  body: document.querySelector('body'),
 };
+
+console.log(refs.picsList);
 
 function onInput(event) {
   event.preventDefault();
@@ -29,18 +32,28 @@ function onInput(event) {
     });
   } else {
     showBtn();
-    scroll();
+    console.log(refs.picsList);
+
     picsFinder(formInputValue, mainApi, page, apiKey)
       .then(markupRender)
       .then(page++)
       .catch(error);
   }
+  setTimeout(() => scroll(), 1000);
 }
 
 function markupRender(array) {
-  const markup = picsTemplate(array);
+  if (array.length > 1) {
+    const markup = picsTemplate(array);
+    refs.picsList.insertAdjacentHTML('beforeend', markup);
+  }
 
-  refs.picsList.insertAdjacentHTML('beforeend', markup);
+  if (array.length === 0) {
+    error({
+      text: 'Nothing found',
+    });
+    refs.loadMore.classList.add('is-hidden');
+  }
 }
 
 function err(res) {
@@ -51,7 +64,6 @@ function err(res) {
 function showBtn() {
   if (refs.picsList.length !== 0) {
     refs.loadMore.classList.remove('is-hidden');
-    refs.picsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
@@ -69,10 +81,11 @@ function onClickModalForBigImage(e) {
 // });
 
 function scroll() {
-  refs.loadMore.scrollIntoView({
+  refs.body.scrollIntoView({
     behavior: 'smooth',
     block: 'end',
   });
+  console.log(refs.body);
 }
 
 refs.form.addEventListener('submit', onInput);
@@ -80,5 +93,4 @@ refs.loadMore.addEventListener('click', onInput);
 refs.reset.addEventListener('click', err);
 refs.searchBtn.addEventListener('click', onInput);
 refs.picsList.addEventListener('click', onClickModalForBigImage);
-refs.searchBtn.addEventListener('click', scroll);
-refs.loadMore.addEventListener('click', scroll);
+// refs.searchBtn.addEventListener('click', scroll);
